@@ -21,25 +21,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var value1_label: UILabel!
     @IBOutlet weak var value2_label: UILabel!
     @IBOutlet weak var total_label: UILabel!
+    @IBOutlet weak var switch1: UISwitch!
+    @IBOutlet weak var switch2: UISwitch!
     
     var values = [0,0]
     var operatorArray:[Bool] = [true,true]
     
-    @IBAction func switch1(_ sender: UISwitch) {
-        operatorArray[0].toggle()
-    }
-    
-    @IBAction func switch2(_ sender: UISwitch) {
-        operatorArray[1].toggle()
-    }
-    
     @IBAction func plus(_ sender: Any) {
         values[0] = Int(textField1.text!) ?? 0
-        values[0] = operatorArray[0] ? values[0] : -values[0]
+        values[0] = !switch1.isOn ? values[0] : -values[0]
         value1_label.text = "\(values[0])"
         
         values[1] = Int(textField2.text!) ?? 0
-        values[1] = operatorArray[1] ? values[1] : -values[1]
+        values[1] = !switch2.isOn ? values[1] : -values[1]
         value2_label.text = "\(values[1])"
         
         total_label.text = "\(values[0] + values[1])"
